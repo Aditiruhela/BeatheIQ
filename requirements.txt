@@ -1,5 +1,11 @@
+Django==5.2.7
 streamlit
 pandas
 numpy
 matplotlib
 scikit-learn
+gunicorn
+uvicorn
+whitenoise
+dj-database-url
+psycopg2-binary
