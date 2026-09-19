@@ -78,7 +78,7 @@ if st.button("Analyze"):
 
     try:
         response = requests.post(
-            "http://127.0.0.1:8000/api/predict/",
+            "https://beatheiq.onrender.com/api/predict/",
             json={
                 "city": city,
                 "factory": row["Factory_Type"],
