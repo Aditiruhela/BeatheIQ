@@ -1,0 +1,209 @@
+{% extends 'predictor/base.html' %}
+{% block title %}BreatheIQ{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* ===== HERO SECTION ===== */
+.hero {
+    position: relative;
+    overflow: hidden;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(circle at top, rgba(0,201,255,0.15), transparent 60%);
+}
+
+/* CURSOR GLOW EFFECT */
+.cursor-glow {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,201,255,0.22), transparent 65%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    transition: transform 0.08s linear;
+    filter: blur(18px);
+    z-index: 0;
+}
+
+/* BIG TITLE */
+.hero h1 {
+    font-size: 52px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #00c9ff, #92fe9d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: 2;
+    position: relative;
+}
+
+/* SUB TEXT */
+.hero p {
+    font-size: 18px;
+    color: #ccc;
+    margin-top: 10px;
+    max-width: 600px;
+    z-index: 2;
+    position: relative;
+}
+
+/* FORM BOX */
+.form-box {
+    margin-top: 30px;
+    background: rgba(255,255,255,0.06);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    width: 320px;
+    z-index: 2;
+    position: relative;
+}
+
+/* SELECT */
+select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.3);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    margin-bottom: 15px;
+}
+
+/* BUTTON */
+.btn-main {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #00c9ff, #0072ff);
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-main:hover {
+    transform: scale(1.05);
+}
+
+/* FEATURES SECTION */
+.section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.section h2 {
+    color: #00c9ff;
+    margin-bottom: 30px;
+}
+
+/* CARDS */
+.card-box {
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 25px;
+    transition: 0.3s;
+    height: 100%;
+}
+
+.card-box:hover {
+    transform: translateY(-8px);
+    background: rgba(0,201,255,0.08);
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+</style>
+
+<!-- HERO -->
+<div class="hero">
+
+    <!-- Cursor Glow -->
+    <div class="cursor-glow"></div>
+
+    <h1>BreatheIQ</h1>
+
+    <p>
+        Predict Air Quality • Analyze Pollution • Detect Health Risk using Machine Learning
+    </p>
+
+    <!-- CITY SELECT -->
+    <form method="POST" action="{% url 'predict' %}" class="form-box">
+        {% csrf_token %}
+
+        <select name="city" required>
+            <option value="">Select City</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Lucknow">Lucknow</option>
+            <option value="Bhopal">Bhopal</option>
+            <option value="Jaipur">Jaipur</option>
+            <option value="Kolkata">Kolkata</option>
+        </select>
+
+        <button class="btn-main">Analyze AQI</button>
+    </form>
+
+</div>
+
+<!-- FEATURES -->
+<div class="section">
+
+    <h2>What This System Does</h2>
+
+    <div class="grid">
+
+        <div class="card-box">
+            <h4>🌫 AQI Intelligence</h4>
+            <p>Real-time air quality analysis using global pollution APIs</p>
+        </div>
+
+        <div class="card-box">
+            <h4>🤖 ML Prediction</h4>
+            <p>Machine learning model predicts health risk level</p>
+        </div>
+
+        <div class="card-box">
+            <h4>🏭 Pollution Tracking</h4>
+            <p>Identifies dominant pollutants affecting health</p>
+        </div>
+
+        <div class="card-box">
+            <h4>🫁 Health Insights</h4>
+            <p>Shows possible diseases based on air quality exposure</p>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+document.addEventListener("mousemove", function(e) {
+    const glow = document.querySelector(".cursor-glow");
+    const hero = document.querySelector(".hero");
+
+    const rect = hero.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    glow.style.left = x + "px";
+    glow.style.top = y + "px";
+});
+</script>
+
+{% endblock %}

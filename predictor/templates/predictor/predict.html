@@ -1,0 +1,162 @@
+{% extends 'predictor/base.html' %}
+
+{% block title %}AQI Result{% endblock %}
+
+{% block content %}
+
+<style>
+/* PAGE BACKGROUND */
+.result-wrapper {
+    padding: 40px 15px;
+}
+
+/* MAIN CARD */
+.aqi-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 35px;
+    max-width: 650px;
+    margin: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* CITY */
+.city-name {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* AQI BIG NUMBER */
+.aqi-value {
+    font-size: 80px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    color: #00c9ff;
+}
+
+/* LABEL */
+.aqi-label {
+    text-align: center;
+    font-size: 18px;
+    color: #ccc;
+}
+
+/* STATUS BADGE */
+.status {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.status span {
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    background: #00c9ff;
+    color: black;
+}
+
+/* DIVIDER */
+.divider {
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+    margin: 25px 0;
+}
+
+/* POLLUTANTS GRID */
+.pollutants {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.pollutant-box {
+    background: rgba(0,0,0,0.3);
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+/* FOOT NOTE */
+.note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #aaa;
+    text-align: center;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+</style>
+
+<div class="result-wrapper">
+
+    <div class="aqi-card">
+
+        <!-- CITY -->
+        <div class="city-name">📍 {{ city }}</div>
+
+        <!-- AQI -->
+        <div class="aqi-value">{{ aqi }}</div>
+        <div class="aqi-label">Air Quality Index</div>
+
+        <!-- STATUS -->
+        <div class="status">
+            <span>
+                {% if aqi <= 50 %}
+                    Good 😊
+                {% elif aqi <= 100 %}
+                    Moderate 😐
+                {% elif aqi <= 150 %}
+                    Unhealthy 😷
+                {% else %}
+                    Severe 🚨
+                {% endif %}
+            </span>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- POLLUTANTS -->
+        <div class="pollutants">
+            <div class="pollutant-box">
+                <span>PM2.5</span>
+                <span>{{ pm25 }}</span>
+            </div>
+
+            <div class="pollutant-box">
+                <span>NO2</span>
+                <span>{{ no2 }}</span>
+            </div>
+
+            <div class="pollutant-box">
+                <span>SO2</span>
+                <span>{{ so2 }}</span>
+            </div>
+
+            <div class="pollutant-box">
+                <span>CO</span>
+                <span>{{ co|default:"N/A" }}</span>
+            </div>
+        </div>
+
+        <!-- NOTE -->
+        <div class="note">
+            * Health risk is estimated based on AQI and pollutant concentration levels.
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

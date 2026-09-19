@@ -1,0 +1,215 @@
+{% extends 'predictor/base.html' %}
+{% block title %}About{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* ===== PAGE BACKGROUND ===== */
+.about-container {
+    padding: 50px 15px;
+    background: radial-gradient(circle at top, rgba(0,201,255,0.08), transparent 60%);
+}
+
+/* ===== HEADER ===== */
+.about-title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #00c9ff, #92fe9d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about-subtitle {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 40px;
+}
+
+/* ===== GLASS CARD ===== */
+.glass-card {
+    background: rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    transition: 0.3s;
+}
+
+.glass-card:hover {
+    transform: translateY(-6px);
+    background: rgba(0,201,255,0.06);
+}
+
+.glass-card h4 {
+    color: #00c9ff;
+    margin-bottom: 10px;
+}
+
+.glass-card p {
+    color: #ddd;
+    line-height: 1.6;
+}
+
+/* ===== TEAM SECTION ===== */
+.team-title {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 28px;
+    color: #00c9ff;
+    font-weight: bold;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* TEAM CARD */
+.team-card {
+    background: rgba(255,255,255,0.06);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    transition: 0.3s;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    background: rgba(0,201,255,0.08);
+}
+
+/* PROFILE CIRCLE */
+.avatar {
+    width: 70px;
+    height: 70px;
+    margin: auto;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00c9ff, #92fe9d);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 22px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+/* NAME */
+.name {
+    font-weight: bold;
+    color: white;
+}
+
+/* ROLE */
+.role {
+    font-size: 12px;
+    color: #aaa;
+}
+
+/* TAG */
+.tag {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: rgba(0,201,255,0.15);
+    color: #00c9ff;
+    font-size: 12px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+</style>
+
+<div class="about-container">
+
+    <!-- HEADER -->
+    <h1 class="about-title">BreatheIQ</h1>
+    <p class="about-subtitle">
+        Machine Learning powered Air Quality & Health Risk Prediction Platform
+    </p>
+
+
+    <!-- INFO CARDS -->
+    <div class="glass-card">
+        <h4>🌍 Vision</h4>
+        <p>
+            This project analyzes air pollution data and predicts health risks
+            using machine learning to create awareness about environmental safety.
+        </p>
+    </div>
+
+    <div class="glass-card">
+        <h4>🧠 ML System</h4>
+        <p>
+            A trained Random Forest model processes AQI and pollutant data
+            to classify health risks into different categories.
+        </p>
+    </div>
+
+    <div class="glass-card">
+        <h4>⚙️ Working</h4>
+        <p>
+            The system collects real-time AQI data + user input and processes it
+            to generate health impact predictions in a visual format.
+        </p>
+    </div>
+
+    <!-- TEAM SECTION -->
+    <div class="team-title">Meet Our Team</div>
+
+    <div class="team-grid">
+
+        <div class="team-card">
+            <div class="avatar">A</div>
+            <div class="name">Aditi ruhela</div>
+            <div class="role">ML Model</div>
+        </div>
+
+        <div class="team-card">
+            <div class="avatar">M</div>
+            <div class="name">Meenakshi</div>
+            <div class="role">Backned & frontend lead</div>
+        </div>
+
+      
+        <div class="team-card">
+            <div class="avatar">A</div>
+            <div class="name">Anjali</div>
+            <div class="role">Data Analyst</div>
+        </div>
+
+        <div class="team-card">
+            <div class="avatar">A</div>
+            <div class="name">Ainakshi mishra</div>
+            <div class="role">data collect & preprocessing</div>
+        </div>
+
+          <div class="team-card">
+            <div class="avatar">A</div>
+            <div class="name">Ananya kushwah</div>
+            <div class="role">Data collect</div>
+        </div>
+
+
+        
+
+    </div>
+
+</div>
+
+{% endblock %}
